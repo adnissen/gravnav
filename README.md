@@ -3,6 +3,10 @@ gravnav
 
 a flixel-powered one button auto-runner… with a twist!
 
+play on newgrounds: http://www.newgrounds.com/portal/view/600445
+
+made by Sets and Settings: http://setsandsettings.com/
+
 some things to note:
 
 -it was based off an early game of mine called "Jetpack Fiasco", hence the main class name
