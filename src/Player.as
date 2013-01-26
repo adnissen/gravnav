@@ -19,14 +19,17 @@ package
 			x = _x;
 			y = _y;
 			loadGraphic(IMGplayer, true, true, 12, 15);
+
+			//set up the physics of the game
 			height = 9;
 			offset.y = 3
-			addAnimation("up", [0, 1], 4);
-			addAnimation("down", [2, 3], 4);
-			//addAnimation("idle", [0, 1], 15, true);
-			//acceleration.y = 300;
 			maxVelocity.x = 50;
 			maxVelocity.y = 350;
+
+
+			addAnimation("up", [0, 1], 4);
+			addAnimation("down", [2, 3], 4);
+
 			
 			zTutorial = new FlxSprite(x - 14, y - 50);
 			zTutorial.loadGraphic(ZSprite, true, false, 37, 31);
@@ -40,10 +43,14 @@ package
 		{
 			if (Registry.gameStarted == true)
 			{
+				//this is kind of cool I think, it just moves the tutorial sprite away when the game starts
+				//I dunno I thought that was a nice touch
 				zTutorial.x -= 1;
 				if (zTutorial.x < -200)
 					zTutorial.kill();
 				counter++;
+
+				//another neat touch, spawns a ghost sprite on a cooldown of about 8 frames
 				ghostCounter++;
 				if (ghostCounter >= 8)
 				{
@@ -70,6 +77,8 @@ package
 			}
 			else 
 				play("down");
+
+			//if they fall off the screen
 			if (y < -20 || y > FlxG.height + 4)
 			{
 				FlxG.play(explode);

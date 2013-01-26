@@ -6,12 +6,12 @@ package
 	 * @author Andrew Nissen
 	 */
 	import org.flixel.*
-	public class Badguy extends FlxSprite
+	public class Block extends FlxSprite
 	{
 		[Embed(source = "../block.png")] protected var IMGbox:Class;
 		private var right:Boolean = false;
 		private var left:Boolean = false;
-		public function Badguy(_x:int,_direction:int, _y:int) 
+		public function Block(_x:int,_direction:int, _y:int) 
 		{
 			x = _x;
 			if (_direction == 0)

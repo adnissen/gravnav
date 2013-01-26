@@ -12,7 +12,9 @@ package
 		public static var grpCollide:FlxGroup;
 		private var player:Player;
 		public static var arrow:FlxSprite;
-		//[Embed(source = "../background.png")] protected var IMGbg:Class;
+		
+
+		//load all the assets
 		[Embed(source = "../arrow.png")] protected var arrowSprite:Class;
 		[Embed(source = "../BGStuff.png")] protected var bgStuff:Class;
 		
@@ -26,6 +28,7 @@ package
 		[Embed(source = "../select.mp3")] protected var select:Class;
 		[Embed(source = "../gravswitch.mp3")] protected var gravSwitch:Class;
 		
+		//I have no idea how to do scrolling things the "right" way, so this is a bad hack
 		private var movingStars1:FlxSprite;
 		private var movingStars1Backup:FlxSprite;
 		private var movingStars2:FlxSprite;
@@ -41,6 +44,8 @@ package
 			FlxG.bgColor = 0xFF2F567C;
 			var bgstuff:FlxSprite = new FlxSprite(0, 0, bgStuff);
 			//add(bgstuff);
+
+			//makes 4 starfield sprites (2 layers)
 			movingStars1 = new FlxSprite(0, 0, stars1);
 			add(movingStars1);
 			movingStars1Backup = new FlxSprite(-240, 0, stars1);
@@ -56,6 +61,8 @@ package
 			arrow.play("flash");
 			add(arrow);
 			//Registry.gameStarted = true;
+
+			//get all the groups set up
 			grpBad = new FlxGroup();
 			grpCollide = new FlxGroup();
 			var bg:FlxSprite = new FlxSprite();
@@ -101,6 +108,7 @@ package
 		}
 		private function gameOver(obj1:FlxObject, obj2:FlxObject):void 
 		{
+			//just plays all the particle effect stuff and resets everything
 			FlxG.play(explode);
 			theEmitter.x = player.x;
 			theEmitter.y = player.y;
@@ -126,6 +134,8 @@ package
 		{
 			if (Registry.gameStarted == true)
 			{
+				//again, this is a bad hack
+				//all it's doing is scrolling two sprites and moving them to the start when they get to the end
 				movingStars1.x += 1;
 				if (movingStars1.x > 240)
 					movingStars1.x = -240;
@@ -173,6 +183,8 @@ package
 					arrow.visible = false;
 				}
 			}
+
+			//the "tutorial" freeze frame
 			else if (Registry.gameStarted == false)
 			{
 				if (FlxG.keys.X)
@@ -189,8 +201,8 @@ package
 				counter = 0;
 				for (var i:int = 0; i < 6; i++) 
 				{
-					add(new Badguy(FlxG.width + 50,0, i * 40));
-					//add(new Badguy(-90,0, i * 40));
+					add(new Block(FlxG.width + 50,0, i * 40));
+					//add(new Block(-90,0, i * 40));
 				}
 				if (waveCounter <= 5)
 				{
